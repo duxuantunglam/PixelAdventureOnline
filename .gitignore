@@ -1,0 +1,60 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Unity Burst - large runtime files (nguyên nhân gây lỗi push)
+Library/PackageCache/com.unity.burst*/.Runtime/
+
+# Uncomment this line if you wish to ignore the asset store tools plugin
+# /[Aa]ssets/AssetStoreTools*
+
+# JetBrains Rider plugin
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Visual Studio, JetBrains, Gradle, MonoDevelop
+.vs/
+.gradle/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Meta and debug symbols
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Crash and debug
+sysinfo.txt
+crashlytics-build.properties
+
+# Built files and packages
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+# Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*

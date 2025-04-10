@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DestroyMeEvent : MonoBehaviour
 {
-    public void DesTroyMe() => Destroy(gameObject);
+    public void DestroyMe() => Destroy(gameObject);
 }

@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     protected bool isGrounded;
     protected bool isWallDetected;
     protected bool isGroundInFrontDetected;
+
     protected int facingDir = -1;
     protected bool facingRight = false;
 

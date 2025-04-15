@@ -26,7 +26,14 @@ public class MenuCharacter : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
 
             if (Vector2.Distance(transform.position, destination) < .1f)
+            {
                 isMoving = false;
+
+                if (!facingRight)
+                {
+                    Flip();
+                }
+            }
         }
     }
 
@@ -39,6 +46,17 @@ public class MenuCharacter : MonoBehaviour
         HandleFlip(destination.x);
     }
 
+    public void TeleportTo(Transform newDestination)
+    {
+        destination = newDestination.position;
+        destination.y = transform.position.y;
+
+        transform.position = destination;
+
+        isMoving = false;
+        HandleFlip(destination.x);
+    }
+
     private void HandleFlip(float xValue)
     {
         if (xValue < transform.position.x && facingRight || xValue > transform.position.x && !facingRight)
@@ -47,7 +65,7 @@ public class MenuCharacter : MonoBehaviour
 
     private void Flip()
     {
-        facingDir = facingDir * -1;
+        facingDir = facingDir * (-1);
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
     }

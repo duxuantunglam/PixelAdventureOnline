@@ -14,7 +14,9 @@ public class UI_MainMenu : MonoBehaviour
     [Header("Interactive Camera")]
     [SerializeField] private MenuCharacter menuCharacter;
     [SerializeField] private CinemachineCamera cinemachine;
+    [SerializeField] private Transform gameModePoint;
     [SerializeField] private Transform mainMenuPoint;
+    [SerializeField] private Transform difficultyPoint;
     [SerializeField] private Transform skinSelectionPoint;
 
     private void Awake()
@@ -72,10 +74,34 @@ public class UI_MainMenu : MonoBehaviour
         AudioManager.instance.PlaySFX(4);
     }
 
+    public void MoveCameraToGameModeMenu()
+    {
+        menuCharacter.MoveTo(gameModePoint);
+        cinemachine.Follow = gameModePoint;
+    }
+
+    public void TeleportCameraToGameModeMenu()
+    {
+        menuCharacter.TeleportTo(gameModePoint);
+        cinemachine.Follow = gameModePoint;
+    }
+
     public void MoveCameraToMainMenu()
     {
         menuCharacter.MoveTo(mainMenuPoint);
         cinemachine.Follow = mainMenuPoint;
+    }
+
+    public void TeleportCameraToMainMenu()
+    {
+        menuCharacter.TeleportTo(mainMenuPoint);
+        cinemachine.Follow = mainMenuPoint;
+    }
+
+    public void MoveCameraToDifficultyMenu()
+    {
+        menuCharacter.MoveTo(difficultyPoint);
+        cinemachine.Follow = difficultyPoint;
     }
 
     public void MoveCameraToSkinMenu()

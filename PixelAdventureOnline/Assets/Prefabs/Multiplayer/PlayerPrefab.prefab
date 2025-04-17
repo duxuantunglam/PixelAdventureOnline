@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 1012109338926858262}
   - component: {fileID: 7612335695806866315}
   - component: {fileID: 6389964627175467527}
+  - component: {fileID: -8626772307290431263}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -141,6 +142,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6389964627175467527}
+  - {fileID: -8626772307290431263}
   ForceRemoteRenderTimeframe: 0
 --- !u!50 &1012109338926858262
 Rigidbody2D:
@@ -219,3 +221,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+--- !u!114 &-8626772307290431263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669806480398674329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

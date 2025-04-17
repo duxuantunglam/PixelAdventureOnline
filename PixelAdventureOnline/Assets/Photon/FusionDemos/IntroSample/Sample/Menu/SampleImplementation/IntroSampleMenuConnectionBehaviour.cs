@@ -151,7 +151,7 @@ namespace FusionDemo
 
       for (int i = SceneManager.sceneCount - 1; i > 0; i--)
       {
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
+        await SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
       }
     }
 

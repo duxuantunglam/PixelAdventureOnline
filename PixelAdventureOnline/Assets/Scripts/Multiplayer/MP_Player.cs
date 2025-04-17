@@ -20,10 +20,13 @@ public class MP_Player : NetworkBehaviour
         //     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         // }
 
-        if (GetInput(out NetworkInputData data))
+        if (Object.HasInputAuthority)
         {
-            data.direction.Normalize();
-            rb.linearVelocity = data.direction * moveSpeed;
+            if (GetInput(out NetworkInputData data))
+            {
+                data.direction.Normalize();
+                rb.linearVelocity = new Vector2(data.direction.x * moveSpeed, rb.linearVelocity.y);
+            }
         }
     }
 }

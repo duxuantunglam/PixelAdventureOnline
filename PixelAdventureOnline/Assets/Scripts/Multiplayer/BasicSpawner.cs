@@ -56,7 +56,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (runner.IsServer)
         {
             // Create a unique position for the player
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
+            int maxPlayers = 4;
+            Vector3 spawnPosition = new Vector3((player.RawEncoded % maxPlayers) * 3f, 2f, 0f);
+
             NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
             // Keep track of the player avatars for easy access
             _spawnedCharacters.Add(player, networkPlayerObject);
@@ -75,22 +77,18 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var data = new NetworkInputData();
+        Vector2 dir = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
-            data.direction += Vector3.forward;
-
-        // if (Input.GetKeyDown(KeyCode.W))
-        //     data.jumpPressed = true;
-
+            dir += Vector2.up;
         if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
-
+            dir += Vector2.down;
         if (Input.GetKey(KeyCode.A))
-            data.direction += Vector3.left;
-
+            dir += Vector2.left;
         if (Input.GetKey(KeyCode.D))
-            data.direction += Vector3.right;
+            dir += Vector2.right;
 
+        data.direction = new Vector3(dir.x, dir.y, 0);
         input.Set(data);
     }
 

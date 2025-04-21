@@ -14,7 +14,7 @@ public class SP_Player : MonoBehaviour
     private bool canBeController = false;
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float doubleJumpForce;
     private float defaultGravityScale;

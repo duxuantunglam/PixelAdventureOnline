@@ -9,6 +9,19 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     private NetworkRunner runner;
 
+    [Header("Prefab References")]
+    [SerializeField] private NetworkPrefabRef _playerPrefab;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
+    private void Start()
+    {
+        // Kiểm tra prefab trong Start
+        if (_playerPrefab == null)
+        {
+            Debug.LogError("Player Prefab chưa được gán trong Inspector!");
+        }
+    }
+
     async void StartGame(GameMode mode)
     {
         // Create the Fusion runner and let it know that we will be providing user input
@@ -23,14 +36,23 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
 
-        // Start or join (depends on gamemode) a session with a specific name
-        await runner.StartGame(new StartGameArgs()
+        try
         {
-            GameMode = mode,
-            SessionName = "TestRoom",
-            Scene = scene,
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-        });
+            // Start or join (depends on gamemode) a session with a specific name
+            await runner.StartGame(new StartGameArgs()
+            {
+                GameMode = mode,
+                SessionName = "TestRoom",
+                Scene = scene,
+                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+            });
+
+            Debug.Log($"[Fusion] Runner Started: {mode}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[Fusion] Error Starting Runner: {e}");
+        }
     }
 
     private void OnGUI()
@@ -48,25 +70,31 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
-    [SerializeField] private NetworkPrefabRef _playerPrefab;
-    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         if (runner.IsServer)
         {
             // Create a unique position for the player
-            int maxPlayers = 4;
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % maxPlayers) * 3f, 2f, 0f);
+            Vector3 spawnPosition = new Vector3((player.RawEncoded % 4) * 3f, 2f, 0f);
 
+            // Spawn player
             NetworkObject networkPlayerObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
-            // Keep track of the player avatars for easy access
-            _spawnedCharacters.Add(player, networkPlayerObject);
+
+            if (networkPlayerObject != null)
+            {
+                _spawnedCharacters.Add(player, networkPlayerObject);
+                Debug.Log($"[Fusion] Spawned player: {player}");
+            }
+            else
+            {
+                Debug.LogError("[Fusion] Failed to spawn player!");
+            }
         }
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
+        // Find and remove the players avatar
         if (_spawnedCharacters.TryGetValue(player, out NetworkObject networkObject))
         {
             runner.Despawn(networkObject);
@@ -77,18 +105,16 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var data = new NetworkInputData();
-        Vector2 dir = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.W))
-            dir += Vector2.up;
-        if (Input.GetKey(KeyCode.S))
-            dir += Vector2.down;
+        // Movement input
         if (Input.GetKey(KeyCode.A))
-            dir += Vector2.left;
+            data.direction.x = -1;
         if (Input.GetKey(KeyCode.D))
-            dir += Vector2.right;
+            data.direction.x = 1;
 
-        data.direction = new Vector3(dir.x, dir.y, 0);
+        // Jump input
+        data.jump = Input.GetKeyDown(KeyCode.Space);
+
         input.Set(data);
     }
 

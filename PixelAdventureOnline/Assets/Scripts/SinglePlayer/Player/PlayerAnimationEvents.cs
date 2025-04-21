@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerAnimationEvents : MonoBehaviour
 {
-    private Player player;
+    private SP_Player player;
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GetComponentInParent<SP_Player>();
     }
 
     public void FinishRespawn() => player.RespawnFinished(true);

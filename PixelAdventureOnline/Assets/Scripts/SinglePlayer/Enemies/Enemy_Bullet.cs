@@ -23,7 +23,7 @@ public class Enemy_Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(playerLayerName))
         {
-            collision.GetComponent<Player>().KnockBack(transform.position.x);
+            collision.GetComponent<SP_Player>().KnockBack(transform.position.x);
             Destroy(gameObject);
         }
 

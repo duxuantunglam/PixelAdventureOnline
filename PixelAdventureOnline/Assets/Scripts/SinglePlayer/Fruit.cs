@@ -43,7 +43,7 @@ public class Fruit : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        SP_Player player = collision.GetComponent<SP_Player>();
 
         if (player != null)
         {

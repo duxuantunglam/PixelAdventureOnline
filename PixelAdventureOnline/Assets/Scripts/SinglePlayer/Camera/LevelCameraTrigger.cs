@@ -11,7 +11,7 @@ public class LevelCameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        SP_Player player = collision.gameObject.GetComponent<SP_Player>();
 
         if (player != null)
         {
@@ -22,7 +22,7 @@ public class LevelCameraTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        SP_Player player = collision.gameObject.GetComponent<SP_Player>();
 
         if (player != null)
         {

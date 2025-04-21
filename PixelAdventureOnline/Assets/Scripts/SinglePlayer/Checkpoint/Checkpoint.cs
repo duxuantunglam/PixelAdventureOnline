@@ -24,7 +24,7 @@ public class Checkpoint : MonoBehaviour
         if (active && canBeReactive == false)
             return;
 
-        Player player = collision.GetComponent<Player>();
+        SP_Player player = collision.GetComponent<SP_Player>();
 
         if (player != null)
             ActivateCheckpoint();

@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
-    private NetworkRunner _runner;
+    private NetworkRunner runner;
 
     async void StartGame(GameMode mode)
     {
         // Create the Fusion runner and let it know that we will be providing user input
-        _runner = gameObject.AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
+        runner = gameObject.AddComponent<NetworkRunner>();
+        runner.ProvideInput = true;
 
         // Create the NetworkSceneInfo from the current scene
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
@@ -24,7 +24,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
 
         // Start or join (depends on gamemode) a session with a specific name
-        await _runner.StartGame(new StartGameArgs()
+        await runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
             SessionName = "TestRoom",
@@ -35,7 +35,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private void OnGUI()
     {
-        if (_runner == null)
+        if (runner == null)
         {
             if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
             {

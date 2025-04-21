@@ -87,7 +87,7 @@ public class Trap_FallingPlatform : MonoBehaviour
             return;
 
 
-        Player player = collision.gameObject.GetComponent<Player>();
+        SP_Player player = collision.gameObject.GetComponent<SP_Player>();
 
         if (player != null)
         {

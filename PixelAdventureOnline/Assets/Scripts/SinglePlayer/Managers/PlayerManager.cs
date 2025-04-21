@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float respawnDelay;
-    public Player player;
+    public SP_Player player;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
             respawnPoint = FindFirstObjectByType<StartPoint>().transform;
 
         if (player == null)
-            player = FindFirstObjectByType<Player>();
+            player = FindFirstObjectByType<SP_Player>();
     }
 
     public void RespawnPlayer()
@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(respawnDelay);
 
         GameObject newPlayer = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
-        player = newPlayer.GetComponent<Player>();
+        player = newPlayer.GetComponent<SP_Player>();
         OnPlayerRespawn?.Invoke();
     }
 

@@ -4,5 +4,5 @@ using UnityEngine;
 public struct NetworkInputData : INetworkInput
 {
     public Vector2 direction;
-    // public NetworkBool jumpPressed;
+    public NetworkBool jump;
 }

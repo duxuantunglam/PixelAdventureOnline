@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class NetworkRunnerHandler : MonoBehaviour
 {
     public NetworkRunner runner { get; private set; }
-    [SerializeField] NetworkRunner NetworkRunner;
+    [SerializeField] private NetworkRunner NetworkRunner;
+    [SerializeField] private PlayerSpawner playerSpawner;
+
 
     // [Header("Scene & GameMode")]
     // [SerializeField] private GameMode gameMode = GameMode.Host;
@@ -34,6 +36,8 @@ public class NetworkRunnerHandler : MonoBehaviour
             });
 
             Debug.Log("[Fusion] runner Started: " + gameMode);
+
+            runner.AddCallbacks(playerSpawner);
         }
         catch (Exception e)
         {

@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 7177333993841781605}
   - component: {fileID: 3802465449995541944}
   - component: {fileID: 727175603110292799}
+  - component: {fileID: 1088625124154104144}
   m_Layer: 7
   m_Name: MP_Player
   m_TagString: Player
@@ -212,6 +213,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3802465449995541944}
   - {fileID: 727175603110292799}
+  - {fileID: 1088625124154104144}
   ForceRemoteRenderTimeframe: 0
 --- !u!50 &5246622358215929705
 Rigidbody2D:
@@ -322,6 +324,24 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &1088625124154104144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538211064838806971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 4002384107793537702}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 0000000044486ff9af8be704dc35f19137f6796c7f434082624487c599478bab5b354a09aef000416c82c1e3
+  TriggerHashes: 00000000
+  TotalWords: 3
 --- !u!1001 &44494072554584513
 PrefabInstance:
   m_ObjectHideFlags: 0

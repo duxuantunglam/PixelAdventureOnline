@@ -19,28 +19,29 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer)
+        if (!runner.IsServer)
+            return;
+
+        Vector3 spawnPosition = new Vector3((player.RawEncoded % 6) * 3f, 2f, 0f);
+
+        NetworkObject networkPlayerObject = runner.Spawn(
+            playerPrefab,
+            spawnPosition,
+            Quaternion.identity,
+            player
+        );
+
+        if (networkPlayerObject != null)
         {
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % 4) * 3f, 2f, 0f);
-
-            NetworkObject networkPlayerObject = runner.Spawn(
-                playerPrefab,
-                spawnPosition,
-                Quaternion.identity,
-                player
-            );
-
-            if (networkPlayerObject != null)
-            {
-                spawnedCharacters.Add(player, networkPlayerObject);
-                Debug.Log($"[Fusion] Spawned player: {player}");
-            }
-            else
-            {
-                Debug.LogError("[Fusion] Failed to spawn player!");
-            }
+            spawnedCharacters.Add(player, networkPlayerObject);
+            Debug.Log($"[Fusion] Spawned player: {player}");
+        }
+        else
+        {
+            Debug.LogError("[Fusion] Failed to spawn player!");
         }
     }
+
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {

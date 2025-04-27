@@ -29,7 +29,7 @@ public class MP_Player : NetworkBehaviour
     [Networked] private NetworkBool isGrounded { get; set; }
     [Networked] private NetworkBool isWallDetected { get; set; }
     [Networked] private NetworkBool facingRight { get; set; } = true;
-    private int facingDir = 1;
+    [Networked] private int facingDir { get; set; } = 1;
 
     [Header("Player Visuals")]
     [SerializeField] private GameObject deathVFX;
@@ -68,6 +68,8 @@ public class MP_Player : NetworkBehaviour
             HandleMovement(data);
             HandleJump(data);
         }
+
+        UpdateAnimation();
     }
 
     private void HandleCollision()
@@ -85,11 +87,17 @@ public class MP_Player : NetworkBehaviour
     private void HandleMovement(NetworkInputData data)
     {
         float moveInput = data.direction.x;
+
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        if ((moveInput > 0 && !facingRight) || (moveInput < 0 && facingRight))
+        if (moveInput > 0 && facingDir != 1)
             Flip();
+        else if (moveInput < 0 && facingDir != -1)
+            Flip();
+    }
 
+    private void UpdateAnimation()
+    {
         if (Object.HasStateAuthority)
         {
             anim.SetFloat("xVelocity", Mathf.Abs(rb.linearVelocity.x));
@@ -138,9 +146,11 @@ public class MP_Player : NetworkBehaviour
 
     private void Flip()
     {
-        facingRight = !facingRight;
         facingDir *= -1;
-        transform.Rotate(0, 180, 0);
+
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * facingDir;
+        transform.localScale = scale;
     }
 
     [Rpc(RpcSources.StateAuthority, RpcTargets.All)]

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8259733109832768614}
   - component: {fileID: 3290157917917979703}
   m_Layer: 0
-  m_Name: FinishPoint
+  m_Name: SP_FinishPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

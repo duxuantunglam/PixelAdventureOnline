@@ -64,6 +64,7 @@
         "Despawn",
         "Dont",
         "gamemode",
+        "interactable",
         "knockback",
         "Mathf",
         "paratemtrs",

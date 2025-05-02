@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "486548531761",
+    "project_id": "pixeladventureonline",
+    "storage_bucket": "pixeladventureonline.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486548531761:android:92b37a76f44425a0ef8310",
+        "android_client_info": {
+          "package_name": "com.dxtl.pixeladventureonline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrOAshTnxduQE-5WlrBkDZJqi0DiQwh2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

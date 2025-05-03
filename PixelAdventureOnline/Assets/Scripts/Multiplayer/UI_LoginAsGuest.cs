@@ -23,7 +23,10 @@ public class UI_LoginAsGuest : MonoBehaviour
         FirebaseManager.OnAuthStateChanged += OnAuthSuccess;
 
         if (guestLoginButton != null)
+        {
+            guestLoginButton.onClick.RemoveAllListeners();
             guestLoginButton.onClick.AddListener(SignInAsGuest);
+        }
 
         if (errorCloseButton != null)
             errorCloseButton.onClick.AddListener(() => errorPanel.SetActive(false));
@@ -54,7 +57,6 @@ public class UI_LoginAsGuest : MonoBehaviour
             HideLoading();
         }
     }
-
 
     private void OnAuthSuccess(string userId)
     {

@@ -7,16 +7,22 @@ public class MP_PlayerIDNumberManager : MonoBehaviour
 {
     public static async Task<int> GetAndAssignPlayerNumber(string userId)
     {
-        int playerNumber = 0;
-        DatabaseReference dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+        int assignedNumber = 0;
+        DatabaseReference dbRef = FirebaseManager.instance.DBreference;
 
-        await dbRef.RunTransaction(mutableData =>
+        var transactionResult = await dbRef.RunTransaction(mutableData =>
         {
             var data = mutableData.Value as Dictionary<string, object> ?? new Dictionary<string, object>();
+            Debug.Log($"[Transaction] Current data keys: {string.Join(", ", data.Keys)}");
 
             int lastNumber = 0;
             if (data.ContainsKey("lastPlayerNumber"))
-                lastNumber = int.Parse(data["lastPlayerNumber"].ToString());
+            {
+                if (int.TryParse(data["lastPlayerNumber"].ToString(), out int parsedNumber))
+                    lastNumber = parsedNumber;
+                else
+                    Debug.LogWarning("[Transaction] lastPlayerNumber parse failed, defaulting to 0");
+            }
 
             lastNumber++;
             data["lastPlayerNumber"] = lastNumber;
@@ -35,10 +41,13 @@ public class MP_PlayerIDNumberManager : MonoBehaviour
             data["users"] = users;
 
             mutableData.Value = data;
-            playerNumber = lastNumber;
+            assignedNumber = lastNumber;
+
+            Debug.Log($"[Transaction] Assigned playerNumber={lastNumber} to userId={userId}");
+
             return TransactionResult.Success(mutableData);
         });
 
-        return playerNumber;
+        return assignedNumber;
     }
 }

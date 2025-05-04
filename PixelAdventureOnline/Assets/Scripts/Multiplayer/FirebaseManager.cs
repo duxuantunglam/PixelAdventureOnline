@@ -4,134 +4,229 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
+using UnityEngine.UI;
+using TMPro;
 
 public class FirebaseManager : MonoBehaviour
 {
-    public static FirebaseManager instance;
+    public GameObject loginPanel, signupPanel, profilePanel, forgetPasswordPanel, notificationPanel;
 
-    public static event Action<string> OnAuthStateChanged;
-    public static event Action<string> OnError;
+    public TMP_InputField loginEmail, loginPassword, signupEmail, signupPassword, signupConfirmPassword, signupUserName, forgetPassEmail;
 
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-    public DatabaseReference DBreference { get; private set; }
+    public TMP_Text noti_Title_Text, noti_Message_Text, profileUserName_Text, profileUserEmail_Text;
 
-    private FirebaseApp app;
+    public Toggle rememberMe;
 
-    private void Awake()
+    public void OpenLoginPanel()
     {
-        if (instance == null)
+        loginPanel.SetActive(true);
+        signupPanel.SetActive(false);
+        profilePanel.SetActive(false);
+        forgetPasswordPanel.SetActive(false);
+    }
+
+    public void OpenSignUpPanel()
+    {
+        loginPanel.SetActive(false);
+        signupPanel.SetActive(true);
+        profilePanel.SetActive(false);
+        forgetPasswordPanel.SetActive(false);
+    }
+
+    public void OpenProfilePanel()
+    {
+        loginPanel.SetActive(false);
+        signupPanel.SetActive(false);
+        profilePanel.SetActive(true);
+        forgetPasswordPanel.SetActive(false);
+    }
+
+    public void OpenForgetPassPanel()
+    {
+        loginPanel.SetActive(false);
+        signupPanel.SetActive(false);
+        profilePanel.SetActive(false);
+        forgetPasswordPanel.SetActive(true);
+    }
+
+    public void LoginUser()
+    {
+        if (string.IsNullOrEmpty(loginEmail.text) || string.IsNullOrEmpty(loginPassword.text))
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            showNotificationMessage("Error", "Fields Empty! Please Input Details In All Fields");
             return;
         }
 
-        InitializeFirebase();
+        // Do Login
     }
 
-    public static bool isFirebaseReady = false;
-    private void InitializeFirebase()
+    public void SignUpUser()
     {
-        Debug.Log("Setting up Firebase Auth");
-
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+        if (string.IsNullOrEmpty(signupEmail.text) || string.IsNullOrEmpty(signupPassword.text) || string.IsNullOrEmpty(signupConfirmPassword.text) || string.IsNullOrEmpty(signupUserName.text))
         {
-            var dependencyStatus = task.Result;
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                var options = FirebaseApp.DefaultInstance.Options;
-                options.DatabaseUrl = new Uri("https://pixeladventureonline-default-rtdb.asia-southeast1.firebasedatabase.app");
-
-                app = FirebaseApp.Create(options, "PixelAdventure");
-
-                auth = FirebaseAuth.GetAuth(app);
-
-                auth.StateChanged += AuthStateChanged;
-                AuthStateChanged(this, null);
-
-                isFirebaseReady = true;
-                Debug.Log("Firebase Auth initialized with custom app!");
-            }
-            else
-            {
-                Debug.LogError($"Could not resolve all Firebase dependencies: {dependencyStatus}");
-                OnError?.Invoke("Failed to initialize Firebase");
-            }
-        });
-    }
-
-    private void AuthStateChanged(object sender, EventArgs eventArgs)
-    {
-        if (auth.CurrentUser != user)
-        {
-            bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
-            user = auth.CurrentUser;
-
-            if (signedIn)
-            {
-                Debug.Log($"Signed in: {user.UserId}");
-                OnAuthStateChanged?.Invoke(user.UserId);
-
-                DBreference = FirebaseDatabase.GetInstance(app).RootReference;
-            }
+            showNotificationMessage("Error", "Fields Empty! Please Input Details In All Fields");
+            return;
         }
+
+        // Do SignUp
     }
 
-    private void OnDestroy()
+    public void forgetPass()
     {
-        if (auth != null)
+        if (string.IsNullOrEmpty(forgetPassEmail.text))
         {
-            auth.StateChanged -= AuthStateChanged;
+            showNotificationMessage("Error", "Fields Empty! Please Input Details In All Fields");
+            return;
         }
+
+        // Do Forget Password
     }
 
-    #region Anonymous Authentication
-    public async Task<bool> SignInAnonymouslyAsync()
+    private void showNotificationMessage(string title, string message)
     {
-        try
-        {
-            var result = await auth.SignInAnonymouslyAsync();
-            user = result.User;
-            Debug.Log($"Anonymous user created: {user.UserId}");
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Failed to sign in anonymously: {ex.Message}");
-            OnError?.Invoke("Failed to sign in as guest");
-            return false;
-        }
-    }
-    #endregion
-
-    #region Auth State
-    public bool IsSignedIn()
-    {
-        return user != null;
+        noti_Title_Text.text = "" + title;
+        noti_Message_Text.text = "" + message;
+        notificationPanel.SetActive(true);
     }
 
-    public string GetUserId()
+    public void CloseNoti_Panel()
     {
-        return user?.UserId ?? string.Empty;
+        noti_Title_Text.text = "";
+        noti_Message_Text.text = "";
+        notificationPanel.SetActive(false);
     }
 
-    public bool IsAnonymous()
+    public void LogOut()
     {
-        return user?.IsAnonymous ?? false;
+        profileUserEmail_Text.text = "";
+        profileUserName_Text.text = "";
+        OpenLoginPanel();
     }
+    // public static FirebaseManager instance;
 
-    public void SignOut()
-    {
-        if (auth != null)
-        {
-            auth.SignOut();
-            user = null;
-        }
-    }
-    #endregion
+    // public static event Action<string> OnAuthStateChanged;
+    // public static event Action<string> OnError;
+
+    // private FirebaseAuth auth;
+    // private FirebaseUser user;
+    // public DatabaseReference DBreference { get; private set; }
+
+    // private FirebaseApp app;
+
+    // private void Awake()
+    // {
+    //     if (instance == null)
+    //     {
+    //         instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //         return;
+    //     }
+
+    //     InitializeFirebase();
+    // }
+
+    // public static bool isFirebaseReady = false;
+    // private void InitializeFirebase()
+    // {
+    //     Debug.Log("Setting up Firebase Auth");
+
+    //     FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+    //     {
+    //         var dependencyStatus = task.Result;
+    //         if (dependencyStatus == DependencyStatus.Available)
+    //         {
+    //             var options = FirebaseApp.DefaultInstance.Options;
+    //             options.DatabaseUrl = new Uri("https://pixeladventureonline-default-rtdb.asia-southeast1.firebasedatabase.app");
+
+    //             app = FirebaseApp.Create(options, "PixelAdventure");
+
+    //             auth = FirebaseAuth.GetAuth(app);
+
+    //             auth.StateChanged += AuthStateChanged;
+    //             AuthStateChanged(this, null);
+
+    //             isFirebaseReady = true;
+    //             Debug.Log("Firebase Auth initialized with custom app!");
+    //         }
+    //         else
+    //         {
+    //             Debug.LogError($"Could not resolve all Firebase dependencies: {dependencyStatus}");
+    //             OnError?.Invoke("Failed to initialize Firebase");
+    //         }
+    //     });
+    // }
+
+    // private void AuthStateChanged(object sender, EventArgs eventArgs)
+    // {
+    //     if (auth.CurrentUser != user)
+    //     {
+    //         bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
+    //         user = auth.CurrentUser;
+
+    //         if (signedIn)
+    //         {
+    //             Debug.Log($"Signed in: {user.UserId}");
+    //             OnAuthStateChanged?.Invoke(user.UserId);
+
+    //             DBreference = FirebaseDatabase.GetInstance(app).RootReference;
+    //         }
+    //     }
+    // }
+
+    // private void OnDestroy()
+    // {
+    //     if (auth != null)
+    //     {
+    //         auth.StateChanged -= AuthStateChanged;
+    //     }
+    // }
+
+    // #region Anonymous Authentication
+    // public async Task<bool> SignInAnonymouslyAsync()
+    // {
+    //     try
+    //     {
+    //         var result = await auth.SignInAnonymouslyAsync();
+    //         user = result.User;
+    //         Debug.Log($"Anonymous user created: {user.UserId}");
+    //         return true;
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Debug.LogError($"Failed to sign in anonymously: {ex.Message}");
+    //         OnError?.Invoke("Failed to sign in as guest");
+    //         return false;
+    //     }
+    // }
+    // #endregion
+
+    // #region Auth State
+    // public bool IsSignedIn()
+    // {
+    //     return user != null;
+    // }
+
+    // public string GetUserId()
+    // {
+    //     return user?.UserId ?? string.Empty;
+    // }
+
+    // public bool IsAnonymous()
+    // {
+    //     return user?.IsAnonymous ?? false;
+    // }
+
+    // public void SignOut()
+    // {
+    //     if (auth != null)
+    //     {
+    //         auth.SignOut();
+    //         user = null;
+    //     }
+    // }
+    // #endregion
 }

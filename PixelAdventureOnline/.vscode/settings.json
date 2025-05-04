@@ -67,6 +67,7 @@
         "interactable",
         "knockback",
         "Mathf",
+        "noti",
         "paratemtrs",
         "Prefs",
         "Raycast",

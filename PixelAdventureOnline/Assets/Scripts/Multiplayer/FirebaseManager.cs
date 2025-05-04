@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class FirebaseManager : MonoBehaviour
 
     private FirebaseAuth auth;
     private FirebaseUser user;
+    public DatabaseReference DBreference { get; private set; }
+
+    private FirebaseApp app;
 
     private void Awake()
     {
@@ -30,6 +34,7 @@ public class FirebaseManager : MonoBehaviour
         InitializeFirebase();
     }
 
+    public static bool isFirebaseReady = false;
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -39,10 +44,18 @@ public class FirebaseManager : MonoBehaviour
             var dependencyStatus = task.Result;
             if (dependencyStatus == DependencyStatus.Available)
             {
-                auth = FirebaseAuth.DefaultInstance;
-                auth.StateChanged += AuthStateChanged;
+                var options = FirebaseApp.DefaultInstance.Options;
+                options.DatabaseUrl = new Uri("https://pixeladventureonline-default-rtdb.asia-southeast1.firebasedatabase.app");
 
-                Debug.Log("Firebase Auth is ready!");
+                app = FirebaseApp.Create(options, "PixelAdventure");
+
+                auth = FirebaseAuth.GetAuth(app);
+
+                auth.StateChanged += AuthStateChanged;
+                AuthStateChanged(this, null);
+
+                isFirebaseReady = true;
+                Debug.Log("Firebase Auth initialized with custom app!");
             }
             else
             {
@@ -63,6 +76,8 @@ public class FirebaseManager : MonoBehaviour
             {
                 Debug.Log($"Signed in: {user.UserId}");
                 OnAuthStateChanged?.Invoke(user.UserId);
+
+                DBreference = FirebaseDatabase.GetInstance(app).RootReference;
             }
         }
     }

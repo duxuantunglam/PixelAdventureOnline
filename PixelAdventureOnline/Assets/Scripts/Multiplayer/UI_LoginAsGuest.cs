@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Threading.Tasks;
+using System;
 
 public class UI_LoginAsGuest : MonoBehaviour
 {
@@ -58,12 +59,23 @@ public class UI_LoginAsGuest : MonoBehaviour
         }
     }
 
-    private void OnAuthSuccess(string userId)
+    public async void OnAuthSuccess(string userId)
     {
         HideLoading();
-        // TODO: Chuyển scene hoặc hiển thị menu chính
-        Debug.Log($"Successfully signed in with ID: {userId}");
+        try
+        {
+            int playerNumber = await MP_PlayerIDNumberManager.GetAndAssignPlayerNumber(userId);
+            string playerName = $"Player{playerNumber:D4}";
+            Debug.Log($"Tên người chơi: {playerName}");
+            // TODO: Hiển thị lên UI hoặc lưu vào đâu đó
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Lỗi khi lấy player number: {ex.Message}");
+            ShowError("Không thể lấy số thứ tự người chơi. Vui lòng thử lại.");
+        }
     }
+
 
     private void ShowError(string message)
     {

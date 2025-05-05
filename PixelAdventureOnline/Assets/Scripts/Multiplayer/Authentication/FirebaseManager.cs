@@ -112,6 +112,7 @@ public class FirebaseManager : MonoBehaviour
         }
 
         // Do Forget Password
+        forgetPasswordSubmit(forgetPassEmail.text);
     }
 
     private void showNotificationMessage(string title, string message)
@@ -276,7 +277,7 @@ public class FirebaseManager : MonoBehaviour
         {
             if (!isSigned)
             {
-                isSignIn = true;
+                isSigned = true;
                 profileUserName_Text.text = "" + user.DisplayName;
                 OpenProfilePanel();
             }
@@ -314,6 +315,31 @@ public class FirebaseManager : MonoBehaviour
                 break;
         }
         return message;
+    }
+
+    void forgetPasswordSubmit(string forgetPasswordEmail)
+    {
+        auth.SendPasswordResetEmailAsync(forgetPasswordEmail).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SendPasswordResetEmail was canceled.");
+            }
+            if (task.IsFaulted)
+            {
+                foreach (Exception exception in task.Exception.Flatten().InnerExceptions)
+                {
+                    Firebase.FirebaseException firebaseEx = exception as Firebase.FirebaseException;
+                    if (firebaseEx != null)
+                    {
+                        var errorCode = (AuthError)firebaseEx.ErrorCode;
+                        showNotificationMessage("Error", GetErrorMessage(errorCode));
+                    }
+                }
+            }
+
+            showNotificationMessage("Alert", "Successfully send email for reset password!");
+        });
     }
     // public static FirebaseManager instance;
 

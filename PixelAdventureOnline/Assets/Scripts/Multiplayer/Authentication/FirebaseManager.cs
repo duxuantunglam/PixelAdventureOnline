@@ -149,6 +149,17 @@ public class FirebaseManager : MonoBehaviour
             if (task.IsFaulted)
             {
                 Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+
+                foreach (Exception exception in task.Exception.Flatten().InnerExceptions)
+                {
+                    Firebase.FirebaseException firebaseEx = exception as Firebase.FirebaseException;
+                    if (firebaseEx != null)
+                    {
+                        var errorCode = (AuthError)firebaseEx.ErrorCode;
+                        showNotificationMessage("Error", GetErrorMessage(errorCode));
+                    }
+                }
+
                 return;
             }
 
@@ -173,6 +184,17 @@ public class FirebaseManager : MonoBehaviour
             if (task.IsFaulted)
             {
                 Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+
+                foreach (Exception exception in task.Exception.Flatten().InnerExceptions)
+                {
+                    Firebase.FirebaseException firebaseEx = exception as Firebase.FirebaseException;
+                    if (firebaseEx != null)
+                    {
+                        var errorCode = (AuthError)firebaseEx.ErrorCode;
+                        showNotificationMessage("Error", GetErrorMessage(errorCode));
+                    }
+                }
+
                 return;
             }
 
@@ -259,6 +281,39 @@ public class FirebaseManager : MonoBehaviour
                 OpenProfilePanel();
             }
         }
+    }
+
+    private static string GetErrorMessage(AuthError errorCode)
+    {
+        var message = "";
+        switch (errorCode)
+        {
+            case AuthError.AccountExistsWithDifferentCredentials:
+                message = "Account not exist!";
+                break;
+            case AuthError.MissingPassword:
+                message = "Missing Password!";
+                break;
+            case AuthError.WeakPassword:
+                message = "Password so weak!";
+                break;
+            case AuthError.WrongPassword:
+                message = "Wrong Password!";
+                break;
+            case AuthError.EmailAlreadyInUse:
+                message = "This email already in use!";
+                break;
+            case AuthError.InvalidEmail:
+                message = "This email invalid!";
+                break;
+            case AuthError.MissingEmail:
+                message = "Missing email!";
+                break;
+            default:
+                message = "Invalid error!";
+                break;
+        }
+        return message;
     }
     // public static FirebaseManager instance;
 

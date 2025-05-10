@@ -76,5 +76,6 @@
         "Rino",
         "UGUI"
     ],
-    "dotnet.preferCSharpExtension": true
+    "dotnet.preferCSharpExtension": true,
+    "workbench.colorTheme": "Default Dark+"
 }

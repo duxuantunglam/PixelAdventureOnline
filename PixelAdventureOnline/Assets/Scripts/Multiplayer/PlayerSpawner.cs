@@ -22,7 +22,7 @@ public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (!runner.IsServer)
             return;
 
-        Vector3 spawnPosition = new Vector3((player.RawEncoded % 6) * 3f, 2f, 0f);
+        Vector3 spawnPosition = new Vector3((player.RawEncoded % 4) * 3f, 2f, 0f);
 
         NetworkObject networkPlayerObject = runner.Spawn(
             playerPrefab,

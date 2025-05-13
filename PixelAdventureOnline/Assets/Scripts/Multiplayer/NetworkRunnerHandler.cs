@@ -1,5 +1,6 @@
 using Fusion;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,11 +10,12 @@ public class NetworkRunnerHandler : MonoBehaviour
     [SerializeField] private NetworkRunner NetworkRunner;
     [SerializeField] private PlayerSpawner playerSpawner;
 
+    private async void Start()
+    {
+        await StartGame(GameMode.AutoHostOrClient);
+    }
 
-    // [Header("Scene & GameMode")]
-    // [SerializeField] private GameMode gameMode = GameMode.Host;
-
-    private async void StartGame(GameMode gameMode)
+    private async System.Threading.Tasks.Task StartGame(GameMode gameMode)
     {
         runner = gameObject.AddComponent<NetworkRunner>();
         runner.ProvideInput = true;
@@ -42,21 +44,6 @@ public class NetworkRunnerHandler : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError("[Fusion] Error Starting runner: " + e);
-        }
-    }
-
-    private void OnGUI()
-    {
-        if (runner == null)
-        {
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if (GUI.Button(new Rect(0, 40, 200, 40), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
         }
     }
 }

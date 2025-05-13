@@ -13,18 +13,19 @@ public class MP_Player : NetworkBehaviour
     [Networked] private NetworkBool canBeController { get; set; }
 
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 16f;
-    [SerializeField] private float doubleJumpForce = 13f;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float doubleJumpForce;
     private float defaultGravityScale;
     [Networked] private NetworkBool canDoubleJump { get; set; }
 
     [Header("Collision")]
-    [SerializeField] private float groundCheckDistance = 1f;
-    [SerializeField] private float wallCheckDistance = 0.8f;
+    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private float wallCheckDistance;
     [SerializeField] private LayerMask whatIsGround;
+    [Space]
     [SerializeField] private Transform enemyCheck;
-    [SerializeField] private float enemyCheckRadius = 0.4f;
+    [SerializeField] private float enemyCheckRadius;
     [SerializeField] private LayerMask whatIsEnemy;
     [Networked] private NetworkBool isGrounded { get; set; }
     [Networked] private NetworkBool isWallDetected { get; set; }

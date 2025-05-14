@@ -6,18 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class NetworkRunnerHandler : MonoBehaviour
 {
+    public static NetworkRunnerHandler instance { get; private set; }
+
     public NetworkRunner runner { get; private set; }
+
     [SerializeField] private NetworkRunner NetworkRunner;
     [SerializeField] private PlayerSpawner playerSpawner;
 
-    private async void Start()
+    private void Awake()
     {
-        await StartGame(GameMode.AutoHostOrClient);
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
-    private async System.Threading.Tasks.Task StartGame(GameMode gameMode)
+    // private async void Start()
+    // {
+    //     await StartGame(GameMode.AutoHostOrClient);
+    // }
+
+    public async void ConnectToSession(string sessionName)
     {
-        runner = gameObject.AddComponent<NetworkRunner>();
+        if (runner != null)
+        {
+           runner = gameObject.AddComponent<NetworkRunner>();
+        }
+        
         runner.ProvideInput = true;
 
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
@@ -31,13 +46,13 @@ public class NetworkRunnerHandler : MonoBehaviour
         {
             await runner.StartGame(new StartGameArgs
             {
-                GameMode = gameMode,
-                SessionName = "TestRoom",
+                GameMode = GameMode.AutoHostOrClient,
+                SessionName = sessionName,
                 Scene = scene,
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
 
-            Debug.Log("[Fusion] runner Started: " + gameMode);
+            Debug.Log("[Fusion] runner Started: " + GameMode.AutoHostOrClient);
 
             runner.AddCallbacks(playerSpawner);
         }

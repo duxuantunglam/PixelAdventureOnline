@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fusion;
+using PixelAdventureOnline.FusionBites;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

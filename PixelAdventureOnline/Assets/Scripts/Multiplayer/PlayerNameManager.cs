@@ -1,12 +1,13 @@
+using PixelAdventureOnline.FusionBites;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerNameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject playerNamePanel;
-    [SerializeField] private TMP_InputField playerNameInputField;
-    [SerializeField] private Button submitButton;
+    [SerializeField] public GameObject playerNamePanel;
+    [SerializeField] public TMP_InputField playerNameInputField;
+    [SerializeField] public Button submitButton;
 
     public void SubmitName()
     {

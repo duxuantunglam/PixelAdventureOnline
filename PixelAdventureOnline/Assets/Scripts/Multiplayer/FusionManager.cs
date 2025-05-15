@@ -5,242 +5,245 @@ using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
+namespace PixelAdventureOnline.FusionBites
 {
-    public static FusionManager instance { get; private set; }
-
-    public NetworkRunner runner;
-
-    [SerializeField] private NetworkObject playerPrefab;
-
-    public string _playerName = null;
-
-    [Header("Session List")]
-    [SerializeField] private GameObject roomListCanvas;
-    private List<SessionInfo> sessions = new List<SessionInfo>();
-    [SerializeField] private Button refreshButton;
-    [SerializeField] private Transform sessionListContent;
-    [SerializeField] private GameObject sessionEntry;
-
-    private Dictionary<PlayerRef, NetworkObject> spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
-
-    private void Awake()
+    public class FusionManager : MonoBehaviour, INetworkRunnerCallbacks
     {
-        if (instance == null)
+        public static FusionManager instance { get; private set; }
+
+        public NetworkRunner runner;
+
+        [SerializeField] private NetworkObject playerPrefab;
+
+        public string _playerName = null;
+
+        [Header("Session List")]
+        [SerializeField] private GameObject roomListCanvas;
+        private List<SessionInfo> sessions = new List<SessionInfo>();
+        [SerializeField] private Button refreshButton;
+        [SerializeField] private Transform sessionListContent;
+        [SerializeField] private GameObject sessionEntry;
+
+        private Dictionary<PlayerRef, NetworkObject> spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+
+        private void Awake()
         {
-            instance = this;
-        }
-    }
-
-    public void ConnectToLobby(string playerName)
-    {
-        roomListCanvas.SetActive(true);
-        _playerName = playerName;
-
-        if (runner == null)
-        {
-            runner = gameObject.AddComponent<NetworkRunner>();
-        }
-
-        runner.JoinSessionLobby(SessionLobby.Shared);
-    }
-
-    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
-    {
-        sessionList.Clear();
-        sessions = sessionList;
-    }
-
-    public void RefreshSessionListUI()
-    {
-        foreach (Transform child in sessionListContent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (SessionInfo session in sessions)
-        {
-            if (session.IsVisible)
+            if (instance == null)
             {
-                GameObject entry = GameObject.Instantiate(sessionEntry, sessionListContent);
-                UI_SessionEntry sessionEntryScript = entry.GetComponent<UI_SessionEntry>();
-                sessionEntryScript.sessionName.text = session.Name;
-                sessionEntryScript.playerCount.text = $"{session.PlayerCount}/{session.MaxPlayers}";
+                instance = this;
+            }
+        }
 
-                if (session.IsOpen == false || session.PlayerCount >= session.MaxPlayers)
+        public void ConnectToLobby(string playerName)
+        {
+            roomListCanvas.SetActive(true);
+            _playerName = playerName;
+
+            if (runner == null)
+            {
+                runner = gameObject.AddComponent<NetworkRunner>();
+            }
+
+            runner.JoinSessionLobby(SessionLobby.Shared);
+        }
+
+        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
+        {
+            sessionList.Clear();
+            sessions = sessionList;
+        }
+
+        public void RefreshSessionListUI()
+        {
+            foreach (Transform child in sessionListContent)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (SessionInfo session in sessions)
+            {
+                if (session.IsVisible)
                 {
-                    sessionEntryScript.joinButton.interactable = false;
-                }
-                else
-                {
-                    sessionEntryScript.joinButton.interactable = true;
-                    // sessionEntryScript.joinButton.onClick.AddListener(() => NetworkRunnerHandler.instance.ConnectToSession(session.Name));
+                    GameObject entry = GameObject.Instantiate(sessionEntry, sessionListContent);
+                    UI_SessionEntry sessionEntryScript = entry.GetComponent<UI_SessionEntry>();
+                    sessionEntryScript.sessionName.text = session.Name;
+                    sessionEntryScript.playerCount.text = $"{session.PlayerCount}/{session.MaxPlayers}";
+
+                    if (session.IsOpen == false || session.PlayerCount >= session.MaxPlayers)
+                    {
+                        sessionEntryScript.joinButton.interactable = false;
+                    }
+                    else
+                    {
+                        sessionEntryScript.joinButton.interactable = true;
+                        // sessionEntryScript.joinButton.onClick.AddListener(() => NetworkRunnerHandler.instance.ConnectToSession(session.Name));
+                    }
                 }
             }
         }
-    }
 
-    public async void ConnectToSession(string sessionName)
-    {
-        roomListCanvas.SetActive(false);
-
-        if (runner != null)
+        public async void ConnectToSession(string sessionName)
         {
-            runner = gameObject.AddComponent<NetworkRunner>();
+            roomListCanvas.SetActive(false);
+
+            if (runner != null)
+            {
+                runner = gameObject.AddComponent<NetworkRunner>();
+            }
+
+            await runner.StartGame(new StartGameArgs()
+            {
+                GameMode = GameMode.Shared,
+                SessionName = sessionName,
+                PlayerCount = 2,
+            });
         }
 
-        await runner.StartGame(new StartGameArgs()
+        public async void CreateSession()
         {
-            GameMode = GameMode.Shared,
-            SessionName = sessionName,
-            PlayerCount = 2,
-        });
-    }
+            roomListCanvas.SetActive(false);
 
-    public async void CreateSession()
-    {
-        roomListCanvas.SetActive(false);
+            int randomInt = UnityEngine.Random.Range(1000, 9999);
+            string randomSessionName = "Room" + randomInt.ToString();
 
-        int randomInt = UnityEngine.Random.Range(1000, 9999);
-        string randomSessionName = "Room" + randomInt.ToString();
+            if (runner != null)
+            {
+                runner = gameObject.AddComponent<NetworkRunner>();
+            }
 
-        if (runner != null)
-        {
-            runner = gameObject.AddComponent<NetworkRunner>();
+            await runner.StartGame(new StartGameArgs()
+            {
+                GameMode = GameMode.AutoHostOrClient,
+                SessionName = randomSessionName,
+                PlayerCount = 2,
+            });
         }
 
-        await runner.StartGame(new StartGameArgs()
+        public void OnConnectedToServer(NetworkRunner runner)
         {
-            GameMode = GameMode.AutoHostOrClient,
-            SessionName = randomSessionName,
-            PlayerCount = 2,
-        });
-    }
+            Debug.Log("OnConnectedToServer");
 
-    public void OnConnectedToServer(NetworkRunner runner)
-    {
-        Debug.Log("OnConnectedToServer");
+            NetworkObject playerObject = runner.Spawn(playerPrefab, Vector3.zero);
 
-        NetworkObject playerObject = runner.Spawn(playerPrefab, Vector3.zero);
-
-        runner.SetPlayerObject(runner.LocalPlayer, playerObject);
-    }
-
-    public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
-    {
-        if (!runner.IsServer)
-            return;
-
-        Vector3 spawnPosition = new Vector3((player.RawEncoded % 4) * 3f, 2f, 0f);
-
-        NetworkObject networkPlayerObject = runner.Spawn(
-            playerPrefab,
-            spawnPosition,
-            Quaternion.identity,
-            player
-        );
-
-        if (networkPlayerObject != null)
-        {
-            spawnedCharacters.Add(player, networkPlayerObject);
-            Debug.Log($"[Fusion] Spawned player: {player}");
+            runner.SetPlayerObject(runner.LocalPlayer, playerObject);
         }
-        else
+
+        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
-            Debug.LogError("[Fusion] Failed to spawn player!");
-        }
-    }
+            if (!runner.IsServer)
+                return;
 
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-    {
-        if (spawnedCharacters.TryGetValue(player, out NetworkObject obj))
+            Vector3 spawnPosition = new Vector3((player.RawEncoded % 4) * 3f, 2f, 0f);
+
+            NetworkObject networkPlayerObject = runner.Spawn(
+                playerPrefab,
+                spawnPosition,
+                Quaternion.identity,
+                player
+            );
+
+            if (networkPlayerObject != null)
+            {
+                spawnedCharacters.Add(player, networkPlayerObject);
+                Debug.Log($"[Fusion] Spawned player: {player}");
+            }
+            else
+            {
+                Debug.LogError("[Fusion] Failed to spawn player!");
+            }
+        }
+
+        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
-            runner.Despawn(obj);
-            spawnedCharacters.Remove(player);
+            if (spawnedCharacters.TryGetValue(player, out NetworkObject obj))
+            {
+                runner.Despawn(obj);
+                spawnedCharacters.Remove(player);
+            }
         }
-    }
 
-    public void OnInput(NetworkRunner runner, NetworkInput input)
-    {
-        var data = new NetworkInputData();
+        public void OnInput(NetworkRunner runner, NetworkInput input)
+        {
+            var data = new NetworkInputData();
 
-        if (Input.GetKey(KeyCode.A))
-            data.direction.x = -1;
-        if (Input.GetKey(KeyCode.D))
-            data.direction.x = 1;
+            if (Input.GetKey(KeyCode.A))
+                data.direction.x = -1;
+            if (Input.GetKey(KeyCode.D))
+                data.direction.x = 1;
 
-        data.jump = Input.GetKeyDown(KeyCode.Space);
+            data.jump = Input.GetKeyDown(KeyCode.Space);
 
-        input.Set(data);
-    }
+            input.Set(data);
+        }
 
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
-    {
+        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
+        {
 
-    }
+        }
 
-    public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
-    {
+        public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)
+        {
 
-    }
+        }
 
-    public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
-    {
+        public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
+        {
 
-    }
+        }
 
-    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
-    {
+        public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
+        {
 
-    }
+        }
 
-    public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
-    {
+        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken)
+        {
 
-    }
+        }
 
-    public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
-    {
+        public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input)
+        {
 
-    }
+        }
 
-    public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
-    {
+        public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
+        {
 
-    }
+        }
 
-    public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
-    {
+        public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
+        {
 
-    }
+        }
 
-    public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
-    {
+        public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress)
+        {
 
-    }
+        }
 
-    public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data)
-    {
+        public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data)
+        {
 
-    }
+        }
 
-    public void OnSceneLoadDone(NetworkRunner runner)
-    {
+        public void OnSceneLoadDone(NetworkRunner runner)
+        {
 
-    }
+        }
 
-    public void OnSceneLoadStart(NetworkRunner runner)
-    {
+        public void OnSceneLoadStart(NetworkRunner runner)
+        {
 
-    }
+        }
 
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
-    {
+        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
+        {
 
-    }
+        }
 
-    public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
-    {
+        public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message)
+        {
 
+        }
     }
 }

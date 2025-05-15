@@ -15619,35 +15619,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3b3e960e8ae3534ea6f2514f9229371, type: 3}
---- !u!114 &2444342050494381155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9187859934966434784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d839ae35c8491bb48b4d07ebde5975e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkRunner: {fileID: 2256194548358482267, guid: d1cbd398450b74c479e0641cdd91d50c, type: 3}
-  playerSpawner: {fileID: 650761382440396835, guid: d1cbd398450b74c479e0641cdd91d50c, type: 3}
---- !u!4 &6059950090751351578
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9187859934966434784}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8850169076588467298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15709,23 +15680,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e951fae36fdc29946a8b59dde6050976, type: 3}
---- !u!1 &9187859934966434784
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6059950090751351578}
-  - component: {fileID: 2444342050494381155}
-  m_Layer: 0
-  m_Name: NetworkRunnerHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -15735,5 +15689,4 @@ SceneRoots:
   - {fileID: 1731565505}
   - {fileID: 1591769123}
   - {fileID: 1511489651}
-  - {fileID: 6059950090751351578}
   - {fileID: 629215991092736359}

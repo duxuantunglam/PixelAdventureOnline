@@ -1,22 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using System;
 using System.Threading.Tasks;
-using Firebase.Extensions;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
+using Firebase.Extensions;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class FirebaseManager : MonoBehaviour
 {
-    public GameObject loginPanel, signupPanel, profilePanel, forgetPasswordPanel, notificationPanel;
+    public GameObject loginPanel, signUpPanel, profilePanel, forgetPasswordPanel, notificationPanel;
 
     public TMP_InputField loginEmail, loginPassword, signupEmail, signupPassword, signupConfirmPassword, signupUserName, forgetPassEmail;
 
-    public TMP_Text noti_Title_Text, noti_Message_Text, profileUserName_Text;
+    public TMP_Text notiTitleText, notiMessageText, profileUserNameText;
 
     public Toggle rememberMe;
 
@@ -25,7 +25,7 @@ public class FirebaseManager : MonoBehaviour
 
     bool isSignIn = false;
 
-    void Start()
+    private void Start()
     {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
@@ -42,36 +42,31 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    public void OpenLoginPanel()
-    {
-        loginPanel.SetActive(true);
-        signupPanel.SetActive(false);
-        profilePanel.SetActive(false);
-        forgetPasswordPanel.SetActive(false);
-    }
-
-    public void OpenSignUpPanel()
+    public void OpenPanel(string panelName)
     {
         loginPanel.SetActive(false);
-        signupPanel.SetActive(true);
+        signUpPanel.SetActive(false);
         profilePanel.SetActive(false);
         forgetPasswordPanel.SetActive(false);
-    }
 
-    public void OpenProfilePanel()
-    {
-        loginPanel.SetActive(false);
-        signupPanel.SetActive(false);
-        profilePanel.SetActive(true);
-        forgetPasswordPanel.SetActive(false);
-    }
-
-    public void OpenForgetPassPanel()
-    {
-        loginPanel.SetActive(false);
-        signupPanel.SetActive(false);
-        profilePanel.SetActive(false);
-        forgetPasswordPanel.SetActive(true);
+        switch (panelName)
+        {
+            case "Login":
+                loginPanel.SetActive(true);
+                break;
+            case "SignUp":
+                signUpPanel.SetActive(true);
+                break;
+            case "Profile":
+                profilePanel.SetActive(true);
+                break;
+            case "ForgetPassword":
+                forgetPasswordPanel.SetActive(true);
+                break;
+            default:
+                Debug.LogWarning("Invalid panel name: " + panelName);
+                break;
+        }
     }
 
     public void LoginUser()
@@ -109,16 +104,16 @@ public class FirebaseManager : MonoBehaviour
 
     private void showNotificationMessage(string title, string message)
     {
-        noti_Title_Text.text = "" + title;
-        noti_Message_Text.text = "" + message;
+        notiTitleText.text = "" + title;
+        notiMessageText.text = "" + message;
 
         notificationPanel.SetActive(true);
     }
 
-    public void CloseNoti_Panel()
+    public void CloseNotiPanel()
     {
-        noti_Title_Text.text = "";
-        noti_Message_Text.text = "";
+        notiTitleText.text = "";
+        notiMessageText.text = "";
 
         notificationPanel.SetActive(false);
     }
@@ -126,8 +121,8 @@ public class FirebaseManager : MonoBehaviour
     public void LogOut()
     {
         auth.SignOut();
-        profileUserName_Text.text = "";
-        OpenLoginPanel();
+        profileUserNameText.text = "";
+        OpenPanel("Login");
     }
 
     void CreateUser(string email, string password, string userName)
@@ -194,8 +189,8 @@ public class FirebaseManager : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 result.User.DisplayName, result.User.UserId);
 
-            profileUserName_Text.text = "" + result.User.DisplayName;
-            OpenProfilePanel();
+            profileUserNameText.text = "" + result.User.DisplayName;
+            OpenPanel("Profile");
         });
     }
 
@@ -272,8 +267,8 @@ public class FirebaseManager : MonoBehaviour
             if (!isSigned)
             {
                 isSigned = true;
-                profileUserName_Text.text = "" + user.DisplayName;
-                OpenProfilePanel();
+                profileUserNameText.text = "" + user.DisplayName;
+                OpenPanel("Profile");
             }
         }
     }

@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_RefreshButton : MonoBehaviour
 {
@@ -26,7 +26,7 @@ public class UI_RefreshButton : MonoBehaviour
     private IEnumerator RefreshSessionWait()
     {
         refreshButton.interactable = false;
-        PlayerSpawner.instance.RefreshSessionListUI();
+        FusionManager.instance.RefreshSessionListUI();
         yield return new WaitForSeconds(3f);
         refreshButton.interactable = true;
     }

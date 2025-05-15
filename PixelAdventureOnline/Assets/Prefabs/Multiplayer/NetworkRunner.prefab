@@ -72,3 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab:
     RawGuidValue: c18a3789c3bf2dd438b1e37822a9767e
+  roomListCanvas: {fileID: 0}
+  refreshButton: {fileID: 0}
+  sessionListContent: {fileID: 0}
+  sessionEntry: {fileID: 7267837767255942152, guid: 2f56739faa1322042b7b0d8600bbdb01, type: 3}

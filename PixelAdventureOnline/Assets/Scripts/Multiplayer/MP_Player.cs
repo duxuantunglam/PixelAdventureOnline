@@ -1,6 +1,6 @@
+using System.Collections;
 using Fusion;
 using UnityEngine;
-using System.Collections;
 
 public class MP_Player : NetworkBehaviour
 {

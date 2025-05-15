@@ -1,64 +1,64 @@
-using Fusion;
-using System;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+// using System;
+// using System.Threading.Tasks;
+// using Fusion;
+// using UnityEngine;
+// using UnityEngine.SceneManagement;
 
-public class NetworkRunnerHandler : MonoBehaviour
-{
-    public static NetworkRunnerHandler instance { get; private set; }
+// public class NetworkRunnerHandler : MonoBehaviour
+// {
+//     public static NetworkRunnerHandler instance { get; private set; }
 
-    public NetworkRunner runner { get; private set; }
+//     public NetworkRunner runner { get; private set; }
 
-    [SerializeField] private NetworkRunner NetworkRunner;
-    [SerializeField] private PlayerSpawner playerSpawner;
+//     [SerializeField] private NetworkRunner NetworkRunner;
+//     [SerializeField] private PlayerSpawner playerSpawner;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
+//     private void Awake()
+//     {
+//         if (instance == null)
+//         {
+//             instance = this;
+//         }
+//     }
 
-    // private async void Start()
-    // {
-    //     await StartGame(GameMode.AutoHostOrClient);
-    // }
+//     // private async void Start()
+//     // {
+//     //     await StartGame(GameMode.AutoHostOrClient);
+//     // }
 
-    public async void ConnectToSession(string sessionName)
-    {
-        if (runner != null)
-        {
-           runner = gameObject.AddComponent<NetworkRunner>();
-        }
-        
-        runner.ProvideInput = true;
+//     public async void ConnectToSession(string sessionName)
+//     {
+//         if (runner != null)
+//         {
+//             runner = gameObject.AddComponent<NetworkRunner>();
+//         }
 
-        var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
-        var sceneInfo = new NetworkSceneInfo();
-        if (scene.IsValid)
-        {
-            sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
-        }
+//         runner.ProvideInput = true;
 
-        try
-        {
-            await runner.StartGame(new StartGameArgs
-            {
-                GameMode = GameMode.AutoHostOrClient,
-                SessionName = sessionName,
-                Scene = scene,
-                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-            });
+//         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
+//         var sceneInfo = new NetworkSceneInfo();
+//         if (scene.IsValid)
+//         {
+//             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
+//         }
 
-            Debug.Log("[Fusion] runner Started: " + GameMode.AutoHostOrClient);
+//         try
+//         {
+//             await runner.StartGame(new StartGameArgs
+//             {
+//                 GameMode = GameMode.AutoHostOrClient,
+//                 SessionName = sessionName,
+//                 Scene = scene,
+//                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+//             });
 
-            runner.AddCallbacks(playerSpawner);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("[Fusion] Error Starting runner: " + e);
-        }
-    }
-}
+//             Debug.Log("[Fusion] runner Started: " + GameMode.AutoHostOrClient);
+
+//             runner.AddCallbacks(playerSpawner);
+//         }
+//         catch (Exception e)
+//         {
+//             Debug.LogError("[Fusion] Error Starting runner: " + e);
+//         }
+//     }
+// }

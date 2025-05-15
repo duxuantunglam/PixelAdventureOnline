@@ -1,9 +1,9 @@
-using UnityEngine;
-using TMPro;
-using Fusion;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_SessionEntry : MonoBehaviour
 {
@@ -19,11 +19,11 @@ public class UI_SessionEntry : MonoBehaviour
     private void Start()
     {
         transform.localScale = Vector3.one;
-        transform.localPosition = Vector3.zero;       
+        transform.localPosition = Vector3.zero;
     }
 
     private void JoinRoom()
     {
-        NetworkRunnerHandler.instance.ConnectToSession(sessionName.text);
+        FusionManager.instance.ConnectToSession(sessionName.text);
     }
 }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using Fusion;
 using System.Linq;
+using Fusion;
+using UnityEngine;
 
 public class MP_GameManager : NetworkBehaviour, IPlayerLeft
 {

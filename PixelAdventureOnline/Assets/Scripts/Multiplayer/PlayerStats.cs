@@ -10,24 +10,34 @@ public class PlayerStats : NetworkBehaviour
 {
     public static PlayerStats instance;
 
-    [Networked(OnChanged = nameof(UpdatePlayerName))] public NetworkString<_32> PlayerName { get; set; }
+    [Networked] public NetworkString<_32> PlayerName { get; set; }
 
-    [SerializeField] public TextMeshPro playerNameLabel;
+    [SerializeField] public TextMeshProUGUI playerNameLabel;
 
-    private void Start()
+    private NetworkString<_32> previousPlayerName;
+
+    public override void FixedUpdateNetwork()
     {
-        if (this.HasStateAuthority)
+        if (previousPlayerName != PlayerName)
         {
-            PlayerName = FusionManager.instance._playerName;
-            if (instance == null)
-            {
-                instance = this;
-            }
+            UpdatePlayerName();
+            previousPlayerName = PlayerName;
         }
     }
 
-    protected static void UpdatePlayerName(Changed<PlayerStats> changed)
+    private void UpdatePlayerName()
     {
-        changed.Behaviour.playerNameLabel.text = changed.Behaviour.PlayerName.ToString();
+        playerNameLabel.text = PlayerName.ToString();
+    }
+
+    public override void Spawned()
+    {
+        previousPlayerName = PlayerName;
+        UpdatePlayerName();
+
+        if (HasStateAuthority)
+        {
+            PlayerName = FusionManager.instance._playerName;
+        }
     }
 }

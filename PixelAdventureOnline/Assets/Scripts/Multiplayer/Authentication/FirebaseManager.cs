@@ -142,15 +142,36 @@ public class FirebaseManager : MonoBehaviour
             case "Login":
                 loginPanel.SetActive(true);
                 break;
+
             case "SignUp":
                 signUpPanel.SetActive(true);
                 break;
+
             case "Profile":
                 profilePanel.SetActive(true);
+                if (grid != null)
+                {
+                    grid.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("Grid object not found!");
+                }
+
+                if (menuCharacter != null)
+                {
+                    menuCharacter.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("MenuCharacter object not found!");
+                }
                 break;
+
             case "ForgetPassword":
                 forgetPasswordPanel.SetActive(true);
                 break;
+
             default:
                 Debug.LogWarning("Invalid panel name: " + panelName);
                 break;

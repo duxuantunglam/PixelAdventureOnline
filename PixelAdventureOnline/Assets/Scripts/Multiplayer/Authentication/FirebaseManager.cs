@@ -36,10 +36,98 @@ public class FirebaseManager : MonoBehaviour
             }
             else
             {
-                UnityEngine.Debug.LogError(System.String.Format(
+                Debug.LogError(System.String.Format(
                   "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
             }
         });
+    }
+
+    [SerializeField] private GameObject multiplayerInterface;
+    [SerializeField] private GameObject grid;
+    [SerializeField] private GameObject menuCharacter;
+    [SerializeField] private GameObject gameModeUI;
+
+    public void MultiplayerButtonClicked()
+    {
+        if (grid != null)
+        {
+            grid.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Grid object not found!");
+        }
+
+        if (menuCharacter != null)
+        {
+            menuCharacter.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("MenuCharacter object not found!");
+        }
+
+        if (gameModeUI != null)
+        {
+            gameModeUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("GameModeUI object not found!");
+        }
+
+        if (multiplayerInterface != null)
+        {
+            multiplayerInterface.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("MultiplayerInterface object not found!");
+        }
+
+        if (!isSignIn)
+        {
+            loginPanel.SetActive(true);
+        }
+    }
+
+    public void BackButtonClicked()
+    {
+        if (multiplayerInterface != null)
+        {
+            multiplayerInterface.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("MultiplayerInterface object not found!");
+        }
+
+        if (grid != null)
+        {
+            grid.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Grid object not found!");
+        }
+
+        if (menuCharacter != null)
+        {
+            menuCharacter.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("MenuCharacter object not found!");
+        }
+
+        if (gameModeUI != null)
+        {
+            gameModeUI.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("GameModeUI object not found!");
+        }
     }
 
     public void OpenPanel(string panelName)
@@ -125,7 +213,7 @@ public class FirebaseManager : MonoBehaviour
         OpenPanel("Login");
     }
 
-    void CreateUser(string email, string password, string userName)
+    public void CreateUser(string email, string password, string userName)
     {
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {

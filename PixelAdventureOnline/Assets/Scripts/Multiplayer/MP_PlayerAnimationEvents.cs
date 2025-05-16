@@ -6,12 +6,10 @@ public class MP_PlayerAnimationEvents : MonoBehaviour
 
     private void Awake()
     {
-        // Tìm MP_Player trong parent hoặc root object
         player = GetComponentInParent<MP_Player>();
 
         if (player == null)
         {
-            // Nếu không tìm thấy trong parent, tìm trong root
             Transform root = transform.root;
             if (root != null)
             {
@@ -21,7 +19,7 @@ public class MP_PlayerAnimationEvents : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("MP_PlayerAnimationEvents: Không tìm thấy MP_Player component!");
+            Debug.LogError("MP_PlayerAnimationEvents: There is no MP_Player component!");
         }
     }
 
@@ -33,11 +31,10 @@ public class MP_PlayerAnimationEvents : MonoBehaviour
         }
         else
         {
-            Debug.LogError("MP_PlayerAnimationEvents: player is null trong FinishRespawn!");
+            Debug.LogError("MP_PlayerAnimationEvents: player is null in FinishRespawn!");
         }
     }
 
-    // Thêm các animation events khác nếu cần
     public void PlayDustFX()
     {
         if (player != null)
@@ -46,7 +43,7 @@ public class MP_PlayerAnimationEvents : MonoBehaviour
         }
         else
         {
-            Debug.LogError("MP_PlayerAnimationEvents: player is null trong PlayDustFX!");
+            Debug.LogError("MP_PlayerAnimationEvents: player is null in PlayDustFX!");
         }
     }
 }

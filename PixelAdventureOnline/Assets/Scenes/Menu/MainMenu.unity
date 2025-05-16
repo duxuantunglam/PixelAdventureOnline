@@ -3047,7 +3047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &335230214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4265,7 +4265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &454336509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4673,7 +4673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326, y: -575}
+  m_AnchoredPosition: {x: 326, y: -500}
   m_SizeDelta: {x: 860, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464838498
@@ -4720,16 +4720,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: OpenSignUpPanel
-        m_Mode: 1
+        m_MethodName: OpenPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SignUp
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &464838499
@@ -7652,6 +7652,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717927794}
   m_CullTransparentMesh: 1
+--- !u!1 &732775189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732775190}
+  - component: {fileID: 732775192}
+  - component: {fileID: 732775191}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &732775190
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732775189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1064527982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &732775191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732775189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Back
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 86c2d1b5e3cc79242aa99715c6905e92, type: 2}
+  m_sharedMaterial: {fileID: -4750573374894315923, guid: 86c2d1b5e3cc79242aa99715c6905e92, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 14.62706, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &732775192
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732775189}
+  m_CullTransparentMesh: 1
 --- !u!1 &748017132
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,7 +7798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748017133}
   m_Layer: 5
-  m_Name: ForgetPassword_Interface
+  m_Name: ForgetPassword_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19029,17 +19165,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978560513}
   m_CullTransparentMesh: 1
---- !u!114 &987305368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-  m_PrefabInstance: {fileID: 3262075354429217207}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f576240469ac348a96e148ec359787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &991927605
 GameObject:
   m_ObjectHideFlags: 0
@@ -19313,7 +19438,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
         m_MethodName: LoginUser
         m_Mode: 1
@@ -19749,6 +19874,139 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1064527981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064527982}
+  - component: {fileID: 1064527985}
+  - component: {fileID: 1064527984}
+  - component: {fileID: 1064527983}
+  m_Layer: 5
+  m_Name: Back_Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1064527982
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064527981}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 732775190}
+  m_Father: {fileID: 1807168944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 336.00464, y: -751}
+  m_SizeDelta: {x: 481, y: 106}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1064527983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064527981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1064527984}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3362409461301097004}
+        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+        m_MethodName: BackButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1064527984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064527981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.23307066, g: 0.19003914, b: 0.3509434, a: 0.5058824}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1064527985
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064527981}
+  m_CullTransparentMesh: 1
 --- !u!1 &1084104249
 GameObject:
   m_ObjectHideFlags: 0
@@ -20290,16 +20548,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: OpenLoginPanel
-        m_Mode: 1
+        m_MethodName: OpenPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Login
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1122094055
@@ -20648,7 +20906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326, y: -675}
+  m_AnchoredPosition: {x: 326, y: -600}
   m_SizeDelta: {x: 860, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170017675
@@ -20695,16 +20953,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: OpenForgetPassPanel
-        m_Mode: 1
+        m_MethodName: OpenPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ForgetPassword
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1170017676
@@ -20894,7 +21152,7 @@ GameObject:
   - component: {fileID: 1188505675}
   - component: {fileID: 1188505674}
   m_Layer: 5
-  m_Name: Back
+  m_Name: Back_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20964,13 +21222,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 209117604}
-        m_TargetAssemblyTypeName: UI_MainMenu, Assembly-CSharp
-        m_MethodName: SwitchUI
-        m_Mode: 2
+      - m_Target: {fileID: 3362409461301097004}
+        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+        m_MethodName: BackButtonClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 335230213}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -22456,7 +22714,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1346219253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3362409461301097004}
+        m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
+        m_MethodName: MultiplayerButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Login
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1346219253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22578,7 +22848,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
         m_MethodName: SignUpUser
         m_Mode: 1
@@ -22829,7 +23099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1408772513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25795,16 +26065,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: OpenLoginPanel
-        m_Mode: 1
+        m_MethodName: OpenPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Login
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1602792580
@@ -25928,7 +26198,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
         m_MethodName: forgetPass
         m_Mode: 1
@@ -26959,7 +27229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1677160254}
   m_Layer: 5
-  m_Name: SignUp_Interface
+  m_Name: SignUp_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28191,12 +28461,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1807168944}
   m_Layer: 5
-  m_Name: Login_Interface
+  m_Name: Login_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1807168944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28219,6 +28489,7 @@ RectTransform:
   - {fileID: 1408772513}
   - {fileID: 464838497}
   - {fileID: 1170017674}
+  - {fileID: 1064527982}
   m_Father: {fileID: 1818284347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -28311,12 +28582,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1818284347}
   m_Layer: 5
-  m_Name: Multiplayer
+  m_Name: Multiplayer_Interface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1818284347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29044,7 +29315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1846517654
 Grid:
   m_ObjectHideFlags: 0
@@ -29269,7 +29540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1867772009
 Animator:
   serializedVersion: 7
@@ -29839,7 +30110,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
         m_MethodName: LogOut
         m_Mode: 1
@@ -29972,9 +30243,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 987305368}
+      - m_Target: {fileID: 3362409461301097004}
         m_TargetAssemblyTypeName: FirebaseManager, Assembly-CSharp
-        m_MethodName: CloseNoti_Panel
+        m_MethodName: CloseNotiPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31051,127 +31322,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7572527d000555b4c8cd2c9f0356e33c, type: 3}
---- !u!1001 &3262075354429217207
-PrefabInstance:
+--- !u!114 &3362409461301097004
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: loginEmail
-      value: 
-      objectReference: {fileID: 1806078953}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: loginPanel
-      value: 
-      objectReference: {fileID: 1807168943}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: rememberMe
-      value: 
-      objectReference: {fileID: 1917723418}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: signUpPanel
-      value: 
-      objectReference: {fileID: 1677160253}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: signupEmail
-      value: 
-      objectReference: {fileID: 1401846825}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: profilePanel
-      value: 
-      objectReference: {fileID: 1637021308}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: loginPassword
-      value: 
-      objectReference: {fileID: 2054501424}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: notiTitleText
-      value: 
-      objectReference: {fileID: 397037205}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: signupPassword
-      value: 
-      objectReference: {fileID: 1691263026}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: signupUserName
-      value: 
-      objectReference: {fileID: 1519087772}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: forgetPassEmail
-      value: 
-      objectReference: {fileID: 1856870270}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: notiMessageText
-      value: 
-      objectReference: {fileID: 1822448988}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: notificationPanel
-      value: 
-      objectReference: {fileID: 771854609}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: forgetPasswordPanel
-      value: 
-      objectReference: {fileID: 748017132}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: profileUserNameText
-      value: 
-      objectReference: {fileID: 978560515}
-    - target: {fileID: 282765629164678043, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: signupConfirmPassword
-      value: 
-      objectReference: {fileID: 1277831203}
-    - target: {fileID: 4899935746941781213, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_Name
-      value: FirebaseManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 981.95496
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 485.16742
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.9375328
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248641074242570355, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d7d51ce48377dd54c8b4e4342e191d18, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585515162480369002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f576240469ac348a96e148ec359787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginPanel: {fileID: 1807168943}
+  signUpPanel: {fileID: 1677160253}
+  profilePanel: {fileID: 1637021308}
+  forgetPasswordPanel: {fileID: 748017132}
+  notificationPanel: {fileID: 771854609}
+  loginEmail: {fileID: 1806078953}
+  loginPassword: {fileID: 2054501424}
+  signupEmail: {fileID: 1401846825}
+  signupPassword: {fileID: 1691263026}
+  signupConfirmPassword: {fileID: 1277831203}
+  signupUserName: {fileID: 1519087772}
+  forgetPassEmail: {fileID: 1856870270}
+  notiTitleText: {fileID: 397037205}
+  notiMessageText: {fileID: 1822448988}
+  profileUserNameText: {fileID: 978560515}
+  rememberMe: {fileID: 1917723418}
+  multiplayerInterface: {fileID: 1818284346}
+  grid: {fileID: 1846517653}
+  menuCharacter: {fileID: 1867772008}
+  gameModeUI: {fileID: 335230213}
 --- !u!1001 &4005740218571308088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31298,6 +31480,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45cc237c6cbeaa64c83fe02ba370f0ab, type: 3}
+--- !u!1 &7585515162480369002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8931370005852557764}
+  - component: {fileID: 3362409461301097004}
+  m_Layer: 0
+  m_Name: FirebaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &7717839781913994637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31568,6 +31767,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8fb9a864ee31248902389e25c5812e, type: 3}
+--- !u!4 &8931370005852557764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585515162480369002}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 981.95496, y: 485.16742, z: 0.9375328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -31579,6 +31793,7 @@ SceneRoots:
   - {fileID: 1975922905}
   - {fileID: 1214276298}
   - {fileID: 209117608}
+  - {fileID: 8931370005852557764}
   - {fileID: 717216158}
   - {fileID: 882154163}
   - {fileID: 454336509}
@@ -31592,5 +31807,4 @@ SceneRoots:
   - {fileID: 1004390388}
   - {fileID: 1189591068}
   - {fileID: 8732497692480481166}
-  - {fileID: 3262075354429217207}
   - {fileID: 7035284717730817104}

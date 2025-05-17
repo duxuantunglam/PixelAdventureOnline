@@ -14,7 +14,7 @@ public class FirebaseManager : MonoBehaviour
 {
     public GameObject loginPanel, signUpPanel, profilePanel, forgetPasswordPanel, notificationPanel;
 
-    public TMP_InputField loginEmail, loginPassword, signupEmail, signupPassword, signupConfirmPassword, signupUserName, forgetPassEmail;
+    public TMP_InputField loginEmail, loginPassword, signUpEmail, signUpPassword, signUpConfirmPassword, signupUserName, forgetPassEmail;
 
     public TMP_Text notiTitleText, notiMessageText, profileUserNameText;
 
@@ -49,6 +49,16 @@ public class FirebaseManager : MonoBehaviour
 
     public void MultiplayerButtonClicked()
     {
+        if (!isSignIn)
+        {
+            loginPanel.SetActive(true);
+        }
+        else
+        {
+            grid.SetActive(true);
+            menuCharacter.SetActive(true);
+        }
+
         if (grid != null)
         {
             grid.SetActive(false);
@@ -83,11 +93,6 @@ public class FirebaseManager : MonoBehaviour
         else
         {
             Debug.LogWarning("MultiplayerInterface object not found!");
-        }
-
-        if (!isSignIn)
-        {
-            loginPanel.SetActive(true);
         }
     }
 
@@ -191,16 +196,16 @@ public class FirebaseManager : MonoBehaviour
 
     public void SignUpUser()
     {
-        if (string.IsNullOrEmpty(signupEmail.text) || string.IsNullOrEmpty(signupPassword.text) || string.IsNullOrEmpty(signupConfirmPassword.text) || string.IsNullOrEmpty(signupUserName.text))
+        if (string.IsNullOrEmpty(signUpEmail.text) || string.IsNullOrEmpty(signUpPassword.text) || string.IsNullOrEmpty(signUpConfirmPassword.text) || string.IsNullOrEmpty(signupUserName.text))
         {
             showNotificationMessage("Error", "Fields Empty! Please Input Details In All Fields");
             return;
         }
 
-        CreateUser(signupEmail.text, signupPassword.text, signupUserName.text);
+        CreateUser(signUpEmail.text, signUpPassword.text, signupUserName.text);
     }
 
-    public void forgetPass()
+    public void ForgetPassword()
     {
         if (string.IsNullOrEmpty(forgetPassEmail.text))
         {

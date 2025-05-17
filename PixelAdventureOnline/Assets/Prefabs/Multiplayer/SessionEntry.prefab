@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159fc829b5e506445a6b5b5a80ea4c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sessionName: {fileID: 0}
+  sessionName: {fileID: 1794569182026899936}
   playerCount: {fileID: 2602996016557567826}
   joinButton: {fileID: 8435229905907560141}
 --- !u!1 &7864501897666402098

@@ -11,7 +11,6 @@
 //     public NetworkRunner runner { get; private set; }
 
 //     [SerializeField] private NetworkRunner NetworkRunner;
-//     [SerializeField] private PlayerSpawner playerSpawner;
 
 //     private void Awake()
 //     {
@@ -53,8 +52,6 @@
 //             });
 
 //             Debug.Log("[Fusion] runner Started: " + GameMode.AutoHostOrClient);
-
-//             runner.AddCallbacks(playerSpawner);
 //         }
 //         catch (Exception e)
 //         {

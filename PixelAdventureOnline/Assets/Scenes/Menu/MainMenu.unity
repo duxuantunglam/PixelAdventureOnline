@@ -253,7 +253,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 51404693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 131274619}
+        m_TargetAssemblyTypeName: PixelAdventureOnline.FusionBites.FusionManager,
+          Assembly-CSharp
+        m_MethodName: OnPlayGameButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &51404693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +726,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5b0585badc5594db8a43e6af952237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &131274619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 534376689649287399, guid: 45cc237c6cbeaa64c83fe02ba370f0ab, type: 3}
+  m_PrefabInstance: {fileID: 7035284717730817104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecc8e973e83c3b4b8ddc174f7fa1f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &159530371
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 1050, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &160198297
@@ -3047,7 +3071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &335230214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8952,7 +8976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &882154160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22423,7 +22447,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 13}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1302272139
 MonoBehaviour:
@@ -23993,9 +24017,9 @@ RectTransform:
   - {fileID: 1237981039}
   m_Father: {fileID: 1805662123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 775, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1444833932
@@ -24010,7 +24034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 482a7925b87a2cf40883edd3bd2b9fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refreshButton: {fileID: 0}
+  refreshButton: {fileID: 1444833933}
 --- !u!114 &1444833933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24531,7 +24555,7 @@ RectTransform:
   m_Father: {fileID: 491033970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28244,7 +28268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 250}
   m_SizeDelta: {x: 1050, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805662124
@@ -29940,9 +29964,9 @@ RectTransform:
   - {fileID: 443660314}
   m_Father: {fileID: 1805662123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 275, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925726204
@@ -29988,7 +30012,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1925726205}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 131274619}
+        m_TargetAssemblyTypeName: PixelAdventureOnline.FusionBites.FusionManager,
+          Assembly-CSharp
+        m_MethodName: CreateSession
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1925726205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31017,9 +31054,9 @@ RectTransform:
   m_Father: {fileID: 160198296}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2068969925
 MonoBehaviour:
@@ -31419,6 +31456,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 534376689649287399, guid: 45cc237c6cbeaa64c83fe02ba370f0ab, type: 3}
+      propertyPath: userMainMenu
+      value: 
+      objectReference: {fileID: 1637021308}
     - target: {fileID: 534376689649287399, guid: 45cc237c6cbeaa64c83fe02ba370f0ab, type: 3}
       propertyPath: refreshButton
       value: 

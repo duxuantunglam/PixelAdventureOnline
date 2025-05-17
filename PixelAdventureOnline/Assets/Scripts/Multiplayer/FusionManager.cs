@@ -17,6 +17,8 @@ namespace PixelAdventureOnline.FusionBites
 
         public string _playerName = null;
 
+        [SerializeField] private GameObject userMainMenu;
+
         [Header("Session List")]
         [SerializeField] private GameObject roomListCanvas;
         private List<SessionInfo> sessions = new List<SessionInfo>();
@@ -34,6 +36,12 @@ namespace PixelAdventureOnline.FusionBites
             }
         }
 
+        public void OnPlayGameButtonClicked()
+        {
+            userMainMenu.SetActive(false);
+            roomListCanvas.SetActive(true);
+        }
+
         public void ConnectToLobby(string playerName)
         {
             roomListCanvas.SetActive(true);
@@ -45,6 +53,29 @@ namespace PixelAdventureOnline.FusionBites
             }
 
             runner.JoinSessionLobby(SessionLobby.Shared);
+        }
+
+        public async void CreateSession()
+        {
+            roomListCanvas.SetActive(false);
+
+            int randomInt = UnityEngine.Random.Range(1000, 9999);
+            string randomSessionName = "Room" + randomInt.ToString();
+
+            if (runner == null)
+            {
+                runner = gameObject.AddComponent<NetworkRunner>();
+            }
+
+            var sceneRef = SceneRef.FromIndex(1);
+
+            await runner.StartGame(new StartGameArgs()
+            {
+                GameMode = GameMode.AutoHostOrClient,
+                SessionName = randomSessionName,
+                PlayerCount = 2,
+                Scene = sceneRef
+            });
         }
 
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
@@ -86,7 +117,7 @@ namespace PixelAdventureOnline.FusionBites
         {
             roomListCanvas.SetActive(false);
 
-            if (runner != null)
+            if (runner == null)
             {
                 runner = gameObject.AddComponent<NetworkRunner>();
             }
@@ -95,26 +126,6 @@ namespace PixelAdventureOnline.FusionBites
             {
                 GameMode = GameMode.Shared,
                 SessionName = sessionName,
-                PlayerCount = 2,
-            });
-        }
-
-        public async void CreateSession()
-        {
-            roomListCanvas.SetActive(false);
-
-            int randomInt = UnityEngine.Random.Range(1000, 9999);
-            string randomSessionName = "Room" + randomInt.ToString();
-
-            if (runner != null)
-            {
-                runner = gameObject.AddComponent<NetworkRunner>();
-            }
-
-            await runner.StartGame(new StartGameArgs()
-            {
-                GameMode = GameMode.AutoHostOrClient,
-                SessionName = randomSessionName,
                 PlayerCount = 2,
             });
         }

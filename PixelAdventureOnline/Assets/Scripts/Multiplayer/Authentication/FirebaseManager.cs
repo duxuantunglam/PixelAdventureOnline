@@ -12,6 +12,8 @@ using UnityEngine.UI;
 
 public class FirebaseManager : MonoBehaviour
 {
+    public static FirebaseManager instance { get; private set; }
+
     public GameObject loginPanel, signUpPanel, profilePanel, forgetPasswordPanel, notificationPanel;
 
     public TMP_InputField loginEmail, loginPassword, signUpEmail, signUpPassword, signUpConfirmPassword, signupUserName, forgetPassEmail;
@@ -27,6 +29,11 @@ public class FirebaseManager : MonoBehaviour
 
     private void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             var dependencyStatus = task.Result;
@@ -49,16 +56,6 @@ public class FirebaseManager : MonoBehaviour
 
     public void MultiplayerButtonClicked()
     {
-        if (!isSignIn)
-        {
-            loginPanel.SetActive(true);
-        }
-        else
-        {
-            grid.SetActive(true);
-            menuCharacter.SetActive(true);
-        }
-
         if (grid != null)
         {
             grid.SetActive(false);
@@ -93,6 +90,16 @@ public class FirebaseManager : MonoBehaviour
         else
         {
             Debug.LogWarning("MultiplayerInterface object not found!");
+        }
+
+        if (!isSignIn)
+        {
+            loginPanel.SetActive(true);
+        }
+        else
+        {
+            grid.SetActive(true);
+            menuCharacter.SetActive(true);
         }
     }
 
@@ -343,7 +350,7 @@ public class FirebaseManager : MonoBehaviour
         auth = null;
     }
 
-    void UpdateUserProfile(string userName)
+    public void UpdateUserProfile(string userName)
     {
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
         if (user != null)

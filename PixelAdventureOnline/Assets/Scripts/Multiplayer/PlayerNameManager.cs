@@ -13,6 +13,8 @@ public class PlayerNameManager : MonoBehaviour
     {
         FusionManager.instance.ConnectToLobby(playerNameInputField.text);
         playerNamePanel.SetActive(false);
+        // FirebaseManager.instance.UpdateUserProfile(playerNameInputField.text);
+        // FirebaseManager.instance.profilePanel.SetActive(true);
     }
 
     public void ActivateButton()

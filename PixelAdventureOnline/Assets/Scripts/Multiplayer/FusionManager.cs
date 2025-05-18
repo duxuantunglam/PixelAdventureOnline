@@ -80,7 +80,7 @@ namespace PixelAdventureOnline.FusionBites
 
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
-            sessionList.Clear();
+            sessions.Clear();
             sessions = sessionList;
         }
 
@@ -124,7 +124,7 @@ namespace PixelAdventureOnline.FusionBites
 
             await runner.StartGame(new StartGameArgs()
             {
-                GameMode = GameMode.Shared,
+                GameMode = GameMode.AutoHostOrClient,
                 SessionName = sessionName,
                 PlayerCount = 2,
             });

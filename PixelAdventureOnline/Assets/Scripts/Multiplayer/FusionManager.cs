@@ -33,6 +33,11 @@ namespace PixelAdventureOnline.FusionBites
             if (instance == null)
             {
                 instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
@@ -50,6 +55,8 @@ namespace PixelAdventureOnline.FusionBites
             if (runner == null)
             {
                 runner = gameObject.AddComponent<NetworkRunner>();
+                runner.ProvideInput = true;
+                runner.AddCallbacks(this);
             }
 
             runner.JoinSessionLobby(SessionLobby.Shared);
@@ -57,7 +64,7 @@ namespace PixelAdventureOnline.FusionBites
 
         public async void CreateSession()
         {
-            roomListCanvas.SetActive(false);
+            // roomListCanvas.SetActive(false);
 
             int randomInt = UnityEngine.Random.Range(1000, 9999);
             string randomSessionName = "Room" + randomInt.ToString();
@@ -65,23 +72,50 @@ namespace PixelAdventureOnline.FusionBites
             if (runner == null)
             {
                 runner = gameObject.AddComponent<NetworkRunner>();
+                runner.ProvideInput = true;
+                runner.AddCallbacks(this);
             }
+
+            await runner.JoinSessionLobby(SessionLobby.Shared);
 
             var sceneRef = SceneRef.FromIndex(1);
 
-            await runner.StartGame(new StartGameArgs()
+            var result = await runner.StartGame(new StartGameArgs()
             {
                 GameMode = GameMode.AutoHostOrClient,
                 SessionName = randomSessionName,
                 PlayerCount = 2,
-                Scene = sceneRef
+                Scene = sceneRef,
+                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+                SessionProperties = new Dictionary<string, SessionProperty>()
+                {
+                    { "visible", true }
+                }
             });
+
+            if (result.Ok)
+            {
+                Debug.Log($"[FusionManager] Session '{randomSessionName}' created successfully.");
+            }
+            else
+            {
+                Debug.LogError($"[FusionManager] Failed to create session: {result.ShutdownReason}");
+            }
         }
 
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
         {
+            Debug.Log("[FusionManager] OnSessionListUpdated called.");
             sessions.Clear();
             sessions = sessionList;
+
+            foreach (var session in sessions)
+            {
+                Debug.Log($"Session Name: {session.Name}, IsVisible: {session.IsVisible}, PlayerCount: {session.PlayerCount}/{session.MaxPlayers}");
+            }
+
+            Debug.Log($"[FusionManager] Updated session list. Total sessions: {sessions.Count}");
+            RefreshSessionListUI();
         }
 
         public void RefreshSessionListUI()
@@ -101,7 +135,7 @@ namespace PixelAdventureOnline.FusionBites
             {
                 if (session.IsVisible)
                 {
-                    GameObject entry = GameObject.Instantiate(sessionEntry, sessionListContent);
+                    GameObject entry = Instantiate(sessionEntry, sessionListContent);
                     UI_SessionEntry sessionEntryScript = entry.GetComponent<UI_SessionEntry>();
                     sessionEntryScript.sessionName.text = session.Name;
                     sessionEntryScript.playerCount.text = $"{session.PlayerCount}/{session.MaxPlayers}";
@@ -126,6 +160,8 @@ namespace PixelAdventureOnline.FusionBites
             if (runner == null)
             {
                 runner = gameObject.AddComponent<NetworkRunner>();
+                runner.ProvideInput = true;
+                runner.AddCallbacks(this);
             }
 
             await runner.StartGame(new StartGameArgs()

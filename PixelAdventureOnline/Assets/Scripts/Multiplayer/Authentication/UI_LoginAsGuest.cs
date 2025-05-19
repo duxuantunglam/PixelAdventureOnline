@@ -67,7 +67,6 @@
 //             int playerNumber = await MP_PlayerIDNumberManager.GetAndAssignPlayerNumber(userId);
 //             string playerName = $"Player{playerNumber:D4}";
 //             Debug.Log($"Tên người chơi: {playerName}");
-//             // TODO: Hiển thị lên UI hoặc lưu vào đâu đó
 //         }
 //         catch (Exception ex)
 //         {

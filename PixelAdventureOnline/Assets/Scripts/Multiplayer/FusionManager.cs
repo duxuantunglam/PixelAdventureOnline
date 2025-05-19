@@ -91,6 +91,12 @@ namespace PixelAdventureOnline.FusionBites
                 Destroy(child.gameObject);
             }
 
+            if (sessions.Count == 0)
+            {
+                Debug.Log("[FusionManager] No sessions available.");
+                return;
+            }
+
             foreach (SessionInfo session in sessions)
             {
                 if (session.IsVisible)

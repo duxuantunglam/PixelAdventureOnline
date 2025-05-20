@@ -64,7 +64,7 @@ namespace PixelAdventureOnline.FusionBites
 
         public async void CreateSession()
         {
-            // roomListCanvas.SetActive(false);
+            roomListCanvas.SetActive(false);
 
             int randomInt = UnityEngine.Random.Range(1000, 9999);
             string randomSessionName = "Room" + randomInt.ToString();
